@@ -116,6 +116,10 @@ type gocqlTypeInfo struct {
 func (t gocqlTypeInfo) New() interface{} {
 	return &gocqlTypeInfo{t.proto, t.typ}
 }
+// samAdd 2024-07-31添加 匹配gocql v1.6.0
+func (t gocqlTypeInfo) NewWithError() (interface{}, error) {
+	return t.New(), nil
+}
 
 func (t gocqlTypeInfo) Type() gocql.Type {
 	return t.typ
